@@ -42,7 +42,6 @@ function setup(){
 
     bird = new Bird(200,50);
 
-    //log6 = new Log(230,180,80, PI/2);
     slingshot = new SlingShot(bird.body,{x:200, y:50});
 }
 
@@ -56,7 +55,7 @@ function draw(){
         text("Score  " + score, width-300, 50)
     
     Engine.update(engine);
-    //strokeWeight(4);
+
     box1.display();
     box2.display();
     ground.display();
@@ -76,14 +75,12 @@ function draw(){
 
     bird.display();
     platform.display();
-    //log6.display();
+    
     slingshot.display();    
 }
 
 function mouseDragged(){
-    //if (gameState!=="launched"){
         Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
-    //}
 }
 
 
@@ -94,7 +91,9 @@ function mouseReleased(){
 
 function keyPressed(){
     if(keyCode === 32){
-       slingshot.attach(bird.body);
+     bird.trajectory=[]
+     Matter.Body.setPosition(bird.body,{x:200 , y:50})
+     slingshot.attach(bird.body);
     }
 }
 
